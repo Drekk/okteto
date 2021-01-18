@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: Drekk/okteto:latest
+        image: dokz/okteto:latest
         ports:
         - containerPort: 80
         imagePullPolicy: "Always"
