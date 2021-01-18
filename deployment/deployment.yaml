@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-deployment
+  labels:
+    app: flaskapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flaskapp
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+      - name: flaskapp
+        image: safernandez666/okteto:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: "Always"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+  selector:
+    app: flaskapp
